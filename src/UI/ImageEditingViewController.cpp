@@ -175,7 +175,7 @@ namespace ImageFactory::UI {
         levelBarLayoutElement->set_minHeight(1.0f);
 
         Button* deleteButton = BeatSaberUI::CreateUIButton(levelBarLayoutElement->get_transform(), "", {0.0f, 0.0f}, {12.0f, 9.0f}, 
-            [=]() {
+            [fileName, levelBarLayout]() {
                 for (std::pair<IFImage*, std::string> pair : *PresenterManager::MAP) {
                     if (pair.first->internalName.starts_with(fileName)) {
                         Config::Delete(pair.first, true);
@@ -191,7 +191,7 @@ namespace ImageFactory::UI {
         deleteText->set_color(Color(1.0f, 0.0f, 0.0f, 1.0f));
 
         Button* editButton = BeatSaberUI::CreateUIButton(levelBarLayoutElement->get_transform(), "", {0.0f, 0.0f}, {12.0f, 9.0f}, 
-            [=]() {
+            [fileName, text]() {
                 for (std::pair<IFImage*, std::string> pair : *PresenterManager::MAP) {
                     if (pair.first->internalName.starts_with(fileName)) {
                         Resources::FindObjectsOfTypeAll<ImageFactoryFlowCoordinator*>().First()->EditImage(pair.first, text);

@@ -63,7 +63,7 @@ namespace ImageFactory::UI {
             SetPreferredSize(horiz, 94, 8);
 
             BeatSaberUI::CreateStringSetting(horiz->get_transform(), "Name", image->name,
-                [=](StringW s) { 
+                [this](StringW s) { 
                     image->name = static_cast<std::string>(s);
             });
 
@@ -73,19 +73,19 @@ namespace ImageFactory::UI {
             SetWidth(horiz, 90);
             
             BeatSaberUI::CreateToggle(settingsVert->get_transform(), "Enabled", image->enabled, 
-                [=](bool b) {
+                [this](bool b) {
                     image->enabled = b;
                     image->Update(true);
             });
 
             BeatSaberUI::CreateIncrementSetting(settingsVert->get_transform(), "Scale X", 2, 0.1f, image->scaleX,
-                [=](float f) {
+                [this](float f) {
                     image->scaleX = f;
                     image->Update(true);
             });
 
             BeatSaberUI::CreateIncrementSetting(settingsVert->get_transform(), "Scale Y", 2, 0.1f, image->scaleY,
-                [=](float f) {
+                [this](float f) {
                     image->scaleY = f;
                     image->Update(true);
             });
@@ -114,7 +114,7 @@ namespace ImageFactory::UI {
             SetPreferredSize(list, 85, 40);
 
             auto dropDown = BeatSaberUI::CreateDropdown(list->get_transform(), "Presentation Options", image->presentationoption, presOptions,
-                [=](StringW s) {
+                [this, list](StringW s) {
                     image->presentationoption = static_cast<std::string>(s);
 
                     ResetOptions(list->get_transform());
@@ -127,14 +127,14 @@ namespace ImageFactory::UI {
             ImageFactoryFlowCoordinator* flow = Object::FindObjectsOfType<ImageFactoryFlowCoordinator*>().First();
 
             auto cancelButton = BeatSaberUI::CreateUIButton(this->get_transform(), "", {-22.0f, -38.0f}, {40.0f, 8.0f}, 
-                [=]() {
+                [flow]() {
                     flow->ResetViews();
             });
 
             BeatSaberUI::CreateText(cancelButton->get_transform(), "CANCEL")->set_alignment(TMPro::TextAlignmentOptions::Center);
 
             auto saveButton = BeatSaberUI::CreateUIButton(this->get_transform(), "", {22.0f, -38.0f}, {40.0f, 8.0f},
-                [=]() {
+                [this, flow]() {
                     GameObject* screen = image->screen;
                     auto localPosition = screen->get_transform()->get_localPosition();
                     auto eulerAngles = screen->get_transform()->get_rotation().get_eulerAngles();

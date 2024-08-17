@@ -128,7 +128,7 @@ namespace ImageFactory::UI {
             levelBarLayoutElement->set_minWidth(1.0f);
 
             auto button = BeatSaberUI::CreateUIButton(levelBarLayoutElement->get_transform(), "", Vector2(0.0f, 0.0f), Vector2(10.0f, 10.0f),
-                [=]() {
+                [this, img, image, fileSize, loadTime]() {
                     auto modal = BeatSaberUI::CreateModal(get_transform(), Vector2(70.0f, 50.0f),
                         nullptr, true);
 
