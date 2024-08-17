@@ -81,12 +81,12 @@
     },
     {
       "id": "paper",
-      "versionRange": "^1.2.9",
+      "versionRange": "^3.6.3",
       "additionalData": {}
     },
     {
       "id": "fmt",
-      "versionRange": "^9.0.0",
+      "versionRange": "^10.0.0",
       "additionalData": {}
     }
   ],
